@@ -1,4 +1,6 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany, hasOne} from '@loopback/repository';
+import {Oferta} from './oferta.model';
+import {Categoria} from './categoria.model';
 
 @model()
 export class Videojuego extends Entity {
@@ -15,6 +17,11 @@ export class Videojuego extends Entity {
   })
   nombre: string;
 
+  @hasMany(() => Oferta)
+  ofertas: Oferta[];
+
+  @hasOne(() => Categoria)
+  categoria: Categoria;
 
   constructor(data?: Partial<Videojuego>) {
     super(data);
