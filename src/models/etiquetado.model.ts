@@ -1,4 +1,6 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {Publicaciones} from './publicaciones.model';
+import {Usuario} from './usuario.model';
 
 @model()
 export class Etiquetado extends Entity {
@@ -9,6 +11,11 @@ export class Etiquetado extends Entity {
   })
   id?: string;
 
+  @belongsTo(() => Publicaciones)
+  publicacionesId: string;
+
+  @belongsTo(() => Usuario)
+  usuarioId: string;
 
   constructor(data?: Partial<Etiquetado>) {
     super(data);

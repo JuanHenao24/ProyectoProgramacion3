@@ -1,4 +1,6 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo, hasMany} from '@loopback/repository';
+import {Usuario} from './usuario.model';
+import {Comentario} from './comentario.model';
 
 @model()
 export class Publicaciones extends Entity {
@@ -29,6 +31,16 @@ export class Publicaciones extends Entity {
   })
   reacciones?: any;
 
+  @property({
+    type: 'string',
+  })
+  id_usuario?: string;
+
+  @belongsTo(() => Usuario)
+  usuarioId: string;
+
+  @hasMany(() => Comentario)
+  comentarios: Comentario[];
 
   constructor(data?: Partial<Publicaciones>) {
     super(data);
