@@ -1,5 +1,8 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
 import {Publicaciones} from './publicaciones.model';
+import {Amistad} from './amistad.model';
+import {Mensajes} from './mensajes.model';
+import {Etiquetado} from './etiquetado.model';
 
 @model()
 export class Usuario extends Entity {
@@ -81,6 +84,20 @@ export class Usuario extends Entity {
 
   @hasMany(() => Publicaciones, {keyTo: 'id_usuario'})
   publicaciones: Publicaciones[];
+
+  @hasMany(() => Amistad)
+  amistades: Amistad[];
+
+  @hasMany(() => Mensajes)
+  mensajes: Mensajes[];
+
+  @property({
+    type: 'string',
+  })
+  mensajesId?: string;
+
+  @hasMany(() => Etiquetado)
+  etiquetados: Etiquetado[];
 
   constructor(data?: Partial<Usuario>) {
     super(data);
