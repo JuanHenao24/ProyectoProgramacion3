@@ -1,5 +1,7 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
 import {Publicaciones} from './publicaciones.model';
+import {Amistad} from './amistad.model';
+import {Mensajes} from './mensajes.model';
 
 @model()
 export class Usuario extends Entity {
@@ -81,6 +83,12 @@ export class Usuario extends Entity {
 
   @hasMany(() => Publicaciones, {keyTo: 'id_usuario'})
   publicaciones: Publicaciones[];
+
+  @hasMany(() => Amistad)
+  amistad: Amistad[];
+
+  @hasMany(() => Mensajes)
+  mensajes: Mensajes[];
 
   constructor(data?: Partial<Usuario>) {
     super(data);

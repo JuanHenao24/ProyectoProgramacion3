@@ -5,3 +5,7 @@ export * from './publicaciones-comentario.controller';
 export * from './comentario-publicaciones.controller';
 export * from './etiquetado-publicaciones.controller';
 export * from './etiquetado-usuario.controller';
+export * from './usuario-amistad.controller';
+export * from './amistad-usuario.controller';
+export * from './usuario-mensajes.controller';
+export * from './mensajes-usuario.controller';
