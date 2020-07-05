@@ -1,22 +1,16 @@
-import {DefaultCrudRepository, repository, HasManyRepositoryFactory} from '@loopback/repository';
-import {Mensajes, MensajesRelations, Usuario} from '../models';
+import {DefaultCrudRepository} from '@loopback/repository';
+import {Mensajes, MensajesRelations} from '../models';
 import {MongodbDataSource} from '../datasources';
-import {inject, Getter} from '@loopback/core';
-import {UsuarioRepository} from './usuario.repository';
+import {inject} from '@loopback/core';
 
 export class MensajesRepository extends DefaultCrudRepository<
   Mensajes,
   typeof Mensajes.prototype.id,
   MensajesRelations
 > {
-
-  public readonly usuarios: HasManyRepositoryFactory<Usuario, typeof Mensajes.prototype.id>;
-
   constructor(
-    @inject('datasources.mongodb') dataSource: MongodbDataSource, @repository.getter('UsuarioRepository') protected usuarioRepositoryGetter: Getter<UsuarioRepository>,
+    @inject('datasources.mongodb') dataSource: MongodbDataSource,
   ) {
     super(Mensajes, dataSource);
-    this.usuarios = this.createHasManyRepositoryFactoryFor('usuarios', usuarioRepositoryGetter,);
-    this.registerInclusionResolver('usuarios', this.usuarios.inclusionResolver);
   }
 }

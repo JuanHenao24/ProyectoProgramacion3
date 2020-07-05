@@ -1,22 +1,16 @@
-import {DefaultCrudRepository, repository, HasManyRepositoryFactory} from '@loopback/repository';
-import {Publicaciones, PublicacionesRelations, Etiquetado} from '../models';
+import {DefaultCrudRepository} from '@loopback/repository';
+import {Publicaciones, PublicacionesRelations} from '../models';
 import {MongodbDataSource} from '../datasources';
-import {inject, Getter} from '@loopback/core';
-import {EtiquetadoRepository} from './etiquetado.repository';
+import {inject} from '@loopback/core';
 
 export class PublicacionesRepository extends DefaultCrudRepository<
   Publicaciones,
   typeof Publicaciones.prototype.id_publicacion,
   PublicacionesRelations
 > {
-
-  public readonly etiquetados: HasManyRepositoryFactory<Etiquetado, typeof Publicaciones.prototype.id_publicacion>;
-
   constructor(
-    @inject('datasources.mongodb') dataSource: MongodbDataSource, @repository.getter('EtiquetadoRepository') protected etiquetadoRepositoryGetter: Getter<EtiquetadoRepository>,
+    @inject('datasources.mongodb') dataSource: MongodbDataSource,
   ) {
     super(Publicaciones, dataSource);
-    this.etiquetados = this.createHasManyRepositoryFactoryFor('etiquetados', etiquetadoRepositoryGetter,);
-    this.registerInclusionResolver('etiquetados', this.etiquetados.inclusionResolver);
   }
 }
