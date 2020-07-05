@@ -2,6 +2,7 @@ import {Entity, model, property, belongsTo, hasMany} from '@loopback/repository'
 import {Usuario} from './usuario.model';
 import {Comentario} from './comentario.model';
 import {Videojuego} from './videojuego.model';
+import {Etiquetado} from './etiquetado.model';
 
 @model()
 export class Publicaciones extends Entity {
@@ -45,6 +46,9 @@ export class Publicaciones extends Entity {
 
   @belongsTo(() => Videojuego)
   videojuegoId: string;
+
+  @hasMany(() => Etiquetado)
+  etiquetados: Etiquetado[];
 
   constructor(data?: Partial<Publicaciones>) {
     super(data);
