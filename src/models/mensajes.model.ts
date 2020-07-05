@@ -25,6 +25,18 @@ export class Mensajes extends Entity {
     type: 'any',
   })
   hora?: any;
+  
+  @property({
+    type: 'string',
+    required: true,
+  })
+  idUsuario1: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  idUsuario2: string;
 
 
   constructor(data?: Partial<Mensajes>) {
