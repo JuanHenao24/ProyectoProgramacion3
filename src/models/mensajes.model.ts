@@ -20,11 +20,6 @@ export class Mensajes extends Entity {
     required: true,
   })
   fecha: string;
-
-  @property({
-    type: 'any',
-  })
-  hora?: any;
   
   @property({
     type: 'string',
