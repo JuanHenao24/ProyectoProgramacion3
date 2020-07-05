@@ -20,6 +20,18 @@ export class Amistad extends Entity {
     required: true,
   })
   estado: string;
+  
+  @property({
+    type: 'string',
+    required: true,
+  })
+  idUsuario1: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  idUsuario2: string;
 
 
   constructor(data?: Partial<Amistad>) {
