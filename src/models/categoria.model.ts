@@ -21,6 +21,10 @@ export class Categoria extends Entity {
   })
   nombre: string;
 
+  @property({
+    type: 'string',
+  })
+  videojuegoId?: string;
 
   constructor(data?: Partial<Categoria>) {
     super(data);

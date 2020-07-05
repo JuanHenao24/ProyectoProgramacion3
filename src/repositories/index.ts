@@ -1,4 +1,9 @@
 
+export * from './categoria.repository';
+export * from './consola.repository';
+export * from './oferta.repository';
+
+
 export * from './amistad.repository';
 export * from './mensajes.repository';
 export * from './comentario.repository';
